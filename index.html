@@ -3,9 +3,44 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Handjet:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Rock, Paper, Scissors</title>
   </head>
   <body>
+    <div id="header">
+      <h1 class="text">Rock, Paper, Scissors</h1>
+      <p class="subtext">First to reach 5 points wins!</p>
+    </div>
+    <div id="content">
+      <div id="choices" class="flex-cont">
+        <h2>Pick you choice</h2>
+        <div id="options" class="flex-cont">
+          <button>rock</button>
+          <button>paper</button>
+          <button>scissors</button>
+        </div>
+      </div>
+
+      <div id="picks" class="flex-cont">
+        <p id="human-choice">Your pick</p>
+        <p>⚔</p>
+        <p id="computer-choice">Computer pick</p>
+      </div>
+
+      <div id="score" class="flex-cont">
+        <p id="human-score">0</p>
+        <p>score</p>
+        <p id="computer-score">0</p>
+      </div>
+
+      <h2 id="result" class="hidden"></h2>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>

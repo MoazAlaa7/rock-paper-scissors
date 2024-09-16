@@ -1,42 +1,38 @@
 let humanScore = 0;
 let computerScore = 0;
+const THRESHOLD = 5;
 
-function playGame() {
-  for (let i = 0; i < 5; i++) {
-    playRound();
-  }
-  console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-  console.log(`Final Score: Human: ${humanScore}, Computer: ${computerScore}`);
-  console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-}
+const btns = document.querySelectorAll("button");
+btns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    if (humanScore !== THRESHOLD && computerScore !== THRESHOLD) {
+      const humanChoice = document.querySelector("#human-choice");
+      humanChoice.textContent = btn.textContent;
 
-function playRound() {
-  const humanChoice = getHumanChoice();
-  const computerChoice = getComputerChoice();
+      const computerChoice = document.querySelector("#computer-choice");
+      computerChoice.textContent = getComputerChoice();
 
-  console.log(`You chose: ${humanChoice}`);
-  console.log(`Computer chose: ${computerChoice}`);
+      playRound(humanChoice.textContent, computerChoice.textContent);
+    }
+  });
+});
 
+function playRound(humanChoice, computerChoice) {
   const winner = determineWinner(humanChoice, computerChoice);
+
   if (winner === "human") {
-    console.log("You win!");
     humanScore++;
+    document.querySelector("#human-score").textContent = humanScore;
+    displayResult(winner);
   } else if (winner === "computer") {
-    console.log("Computer wins!");
     computerScore++;
+    document.querySelector("#computer-score").textContent = computerScore;
+    displayResult(winner);
   } else {
-    console.log("It's a tie!");
+    result.textContent = "It's a tie!";
   }
 
-  console.log(
-    `Current Score: Human: ${humanScore}, Computer: ${computerScore}`
-  );
-  console.log("================================");
-}
-
-function getHumanChoice() {
-  const playerChoice = prompt("Enter your choice (rock, paper, or scissors): ");
-  return playerChoice.toLowerCase();
+  result.classList.remove("hidden");
 }
 
 function getComputerChoice() {
@@ -58,4 +54,18 @@ function determineWinner(humanChoice, computerChoice) {
   }
 }
 
-playGame();
+function displayResult(winner) {
+  const result = document.querySelector("#result");
+
+  if (humanScore !== THRESHOLD && computerScore !== THRESHOLD) {
+    result.textContent = `${winner} wins!`;
+  } else {
+    if (winner === "human") {
+      result.textContent = "human wins the game! 😁🥇";
+      document.body.style.backgroundColor = "green";
+    } else {
+      result.textContent = "computer wins the game! 😕";
+      document.body.style.backgroundColor = "red";
+    }
+  }
+}
